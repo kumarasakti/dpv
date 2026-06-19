@@ -27,9 +27,9 @@
     <tspan class="dim">&gt; </tspan><tspan class="green">2 running</tspan><tspan class="dim"> . </tspan><tspan class="norm">1 stopped</tspan><tspan class="dim"> . </tspan><tspan class="norm">3 total</tspan>
   </text>
 
-  <text x="26" y="86"><tspan class="green bold">&#x25CF;</tspan><tspan class="blue"> fortigate-prometheus</tspan></text>
-  <text x="26" y="110"><tspan class="green bold">&#x25CF;</tspan><tspan class="cyan"> fortigate-grafana</tspan></text>
-  <text x="26" y="134"><tspan class="red bold">&#x25CB;</tspan><tspan class="dim"> old-worker</tspan></text>
+  <text x="26" y="86"><tspan class="green bold">&#x25CF;</tspan><tspan class="blue"> web-api</tspan></text>
+  <text x="26" y="110"><tspan class="green bold">&#x25CF;</tspan><tspan class="cyan"> postgres-db</tspan></text>
+  <text x="26" y="134"><tspan class="red bold">&#x25CB;</tspan><tspan class="dim"> redis-cache</tspan></text>
 
   <text x="18" y="164"><tspan class="dim">Tip: </tspan><tspan class="norm">dpv -s -i=cp</tspan><tspan class="dim"> shows created + ports under each name</tspan></text>
 </svg>
