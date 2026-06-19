@@ -89,35 +89,20 @@ dpv -o name -r
 
 ### Pretty (default)
 
-Each container rendered as a bordered card with status indicator:
+Each container is rendered as a bordered card. Long values (commands, ports) are
+automatically truncated to fit your terminal width.
 
-```
-▸ 3 running · 1 stopped · 4 total
-
-╭──────────────────────────────────────────────╮
-│ ● my-web                                     │
-│   Status:              Up 2 hours            │
-│   Created:             2 hours ago           │
-│   Ports:               0.0.0.0:8080->80/tcp  │
-│                        443/tcp               │
-│   ID:                  abc123def456          │
-│   Image:               nginx:latest          │
-│   Command:             nginx -g daemon off;  │
-╰──────────────────────────────────────────────╯
-```
+![dpv pretty output](docs/output-pretty.svg)
 
 - `●` green dot = running, `○` red dot = stopped
 - Created time is color-coded: **green** (<1h), **yellow** (<24h), **dim** (older)
+- Long `Command` values are truncated with `…` to keep cards tidy
 
 ### Slim (`-s`)
 
-```
-▸ 3 running · 0 stopped · 3 total
+Minimal status-dot + name list. Add `-i` to show selected fields inline.
 
-  ● my-web
-  ● my-db
-  ● redis-cache
-```
+![dpv slim output](docs/output-slim.svg)
 
 Add fields with `-i`: `dpv -s -i=cp` shows created + ports under each name.
 
