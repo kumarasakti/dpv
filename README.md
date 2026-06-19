@@ -30,13 +30,13 @@ Inspired by [docker-pretty-ps](https://github.com/politeauthority/docker-pretty-
 ### From source
 
 ```bash
-go install github.com/kumarasakti/dpv@latest
+go install github.com/bintang/dpv@latest
 ```
 
 ### Build locally
 
 ```bash
-git clone https://github.com/kumarasakti/dpv.git
+git clone https://github.com/bintang/dpv.git
 cd dpv
 make build
 # binary is at ./bin/dpv
@@ -82,9 +82,9 @@ Each container rendered as a bordered card with status indicator:
 │   Created:             2 hours ago           │
 │   Ports:               0.0.0.0:8080->80/tcp  │
 │                        443/tcp               │
-│   ID:                  abc123def456           │
-│   Image:               nginx:latest           │
-│   Command:             nginx -g daemon off;   │
+│   ID:                  abc123def456          │
+│   Image:               nginx:latest          │
+│   Command:             nginx -g daemon off;  │
 ╰──────────────────────────────────────────────╯
 ```
 
