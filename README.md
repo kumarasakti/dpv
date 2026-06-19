@@ -27,16 +27,34 @@ Inspired by [docker-pretty-ps](https://github.com/politeauthority/docker-pretty-
 
 ## Install
 
-### From source
+### go install (recommended)
+
+Requires Go 1.25+. Installs the latest released version directly to `$GOPATH/bin`:
 
 ```bash
-go install github.com/bintang/dpv@latest
+go install github.com/kumarasakti/dpv@latest
 ```
 
-### Build locally
+Install a specific version:
 
 ```bash
-git clone https://github.com/bintang/dpv.git
+go install github.com/kumarasakti/dpv@v0.1.0
+```
+
+### Pre-built binaries
+
+Download the binary for your platform from the [Releases](https://github.com/kumarasakti/dpv/releases) page, then move it to a directory in your `$PATH`:
+
+```bash
+# example for Linux amd64
+curl -Lo dpv https://github.com/kumarasakti/dpv/releases/latest/download/dpv-linux-amd64
+chmod +x dpv && sudo mv dpv /usr/local/bin/
+```
+
+### Build from source
+
+```bash
+git clone https://github.com/kumarasakti/dpv.git
 cd dpv
 make build
 # binary is at ./bin/dpv

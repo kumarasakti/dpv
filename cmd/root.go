@@ -51,7 +51,7 @@ var versionCmd = &cobra.Command{
 	Short: "Print dpv version information",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println(bannerStyle.Render(banner))
-		fmt.Printf(" %s  %s\n", color.Bold.Render("Docker Pretty View"), color.Dim.Render("v"+version))
+		fmt.Printf(" %s  %s\n", color.Bold.Render("Docker Pretty View"), color.Dim.Render(versionLabel(version)))
 		fmt.Printf(" %s\n\n", color.Dim.Render("https://github.com/kumarasakti/dpv"))
 	},
 }
@@ -66,13 +66,13 @@ func init() {
 
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.SetVersionTemplate(bannerStyle.Render(banner) + "\n" +
-		" Docker Pretty View  v{{.Version}}\n\n")
+		" Docker Pretty View  {{.Version}}\n\n")
 }
 
 // Execute is the CLI entry point called from main.
 func Execute(v string) {
 	version = v
-	rootCmd.Version = v
+	rootCmd.Version = versionLabel(v)
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
 	}
@@ -143,4 +143,12 @@ func pickFormatter() formatter.Formatter {
 		return &formatter.SlimFormatter{Includes: inc}
 	}
 	return &formatter.PrettyFormatter{Includes: inc}
+}
+
+// versionLabel ensures the version string is always displayed with a single "v" prefix.
+func versionLabel(v string) string {
+	if strings.HasPrefix(v, "v") {
+		return v
+	}
+	return "v" + v
 }
