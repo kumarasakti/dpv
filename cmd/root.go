@@ -60,13 +60,15 @@ func init() {
 	rootCmd.Flags().BoolVarP(&flagAll, "all", "a", false, "Include stopped containers")
 	rootCmd.Flags().BoolVarP(&flagSlim, "slim", "s", false, "Show slim minimal output")
 	rootCmd.Flags().StringVarP(&flagInclude, "include", "i", "", "Columns to show: (n)id, (i)mage, co(m)mand, (c)reated, (s)tatus, (p)orts, (h)ealth")
-	rootCmd.Flags().StringVarP(&flagOrder, "order", "o", "", "Sort by: name, created, status (default)")
+	rootCmd.Flags().StringVarP(&flagOrder, "order", "o", "", "Sort by: name, created (default: newest first)")
 	rootCmd.Flags().BoolVarP(&flagReverse, "reverse", "r", false, "Reverse display order")
 	rootCmd.Flags().BoolVarP(&flagJSON, "json", "j", false, "Output as JSON")
 
 	rootCmd.AddCommand(versionCmd)
+	rootCmd.Flags().BoolP("version", "v", false, "Show version banner")
 	rootCmd.SetVersionTemplate(bannerStyle.Render(banner) + "\n" +
-		" Docker Pretty View  {{.Version}}\n\n")
+		" " + color.Bold.Render("Docker Pretty View") + "  " + color.Dim.Render("{{.Version}}") + "\n" +
+		" " + color.Dim.Render("https://github.com/kumarasakti/dpv") + "\n\n")
 }
 
 // Execute is the CLI entry point called from main.

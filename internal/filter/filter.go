@@ -11,7 +11,7 @@ import (
 type Options struct {
 	SearchTerms []string
 	ShowAll     bool
-	OrderBy     string // "status" (default), "name", "created"
+	OrderBy     string // "name", "created", or "" (default: newest first)
 	Reverse     bool
 }
 
@@ -35,7 +35,7 @@ func filterBySearch(containers []docker.Container, terms []string) []docker.Cont
 	var out []docker.Container
 	for _, c := range containers {
 		for _, t := range terms {
-			if strings.Contains(c.Name, t) {
+			if strings.Contains(strings.ToLower(c.Name), strings.ToLower(t)) {
 				out = append(out, c)
 				break
 			}
