@@ -17,6 +17,9 @@ type jsonOutput struct {
 }
 
 func (f *JSONFormatter) Format(w io.Writer, containers []docker.Container, stats docker.Stats) error {
+	if containers == nil {
+		containers = []docker.Container{}
+	}
 	out := jsonOutput{
 		TotalContainers: stats.Total,
 		TotalRunning:    stats.Running,

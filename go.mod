@@ -1,6 +1,8 @@
 module github.com/kumarasakti/dpv
 
-go 1.25.0
+go 1.24
+
+toolchain go1.24.0
 
 require (
 	github.com/charmbracelet/lipgloss v1.1.0

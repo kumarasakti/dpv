@@ -15,7 +15,7 @@ import (
 
 const (
 	defaultTermWidth = 80
-	cardPadding      = 6 // border (2) + padding (2) + field indent (2)
+	cardPadding      = 7 // border (2) + padding (2) + field indent (2) + label-value space (1)
 )
 
 func termWidth() int {
@@ -45,7 +45,7 @@ func (f *PrettyFormatter) Format(w io.Writer, containers []docker.Container, sta
 		var lines []string
 
 		nameStyle := color.ForIndex(i)
-		title := fmt.Sprintf("%s %s", color.StatusDot(c.Running), nameStyle.Bold(true).Render(c.Name))
+		title := fmt.Sprintf("%s %s", color.StatusDot(c.Running), nameStyle.Bold(true).Render(truncate(c.Name, maxContent-2)))
 		lines = append(lines, title)
 
 		if f.Includes.Status {
@@ -95,19 +95,21 @@ func (f *PrettyFormatter) Format(w io.Writer, containers []docker.Container, sta
 
 const fieldWidth = 14
 
-func formatField(label, value string, _ int) string {
+func formatField(label, value string, maxContent int) string {
 	bold := color.Bold.Render(label + ":")
-	return fmt.Sprintf("  %-*s %s", fieldWidth, bold, value)
+	val := truncate(value, maxContent-fieldWidth)
+	return fmt.Sprintf("  %-*s %s", fieldWidth, bold, val)
 }
 
 func formatPorts(ports []docker.Port, maxContent int) []string {
 	if len(ports) == 0 {
 		return []string{formatField("Ports", color.Dim.Render("none"), maxContent)}
 	}
+	portMax := maxContent - fieldWidth
 	var lines []string
-	lines = append(lines, formatField("Ports", ports[0].String(), maxContent))
+	lines = append(lines, formatField("Ports", truncate(ports[0].String(), portMax), maxContent))
 	for _, p := range ports[1:] {
-		lines = append(lines, fmt.Sprintf("  %-*s %s", fieldWidth, "", p.String()))
+		lines = append(lines, fmt.Sprintf("  %-*s %s", fieldWidth, "", truncate(p.String(), portMax)))
 	}
 	return lines
 }

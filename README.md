@@ -29,7 +29,7 @@ Inspired by [docker-pretty-ps](https://github.com/politeauthority/docker-pretty-
 
 ### go install (recommended)
 
-Requires Go 1.25+. Installs the latest released version directly to `$GOPATH/bin`:
+Requires Go 1.24+. Installs the latest released version directly to `$GOPATH/bin`:
 
 ```bash
 go install github.com/kumarasakti/dpv@latest
@@ -89,7 +89,7 @@ dpv -o name -r
 
 ### Pretty (default)
 
-Each container is rendered as a bordered card. Long values (commands, ports) are
+Each container is rendered as a bordered card. Long values (names, images, commands, ports) are
 automatically truncated to fit your terminal width.
 
 ![dpv pretty output](docs/output-pretty.svg)
@@ -130,7 +130,7 @@ Add fields with `-i`: `dpv -s -i=cp` shows created + ports under each name.
 | `--all` | `-a` | Include stopped containers |
 | `--slim` | `-s` | Minimal output with status dots |
 | `--include` | `-i` | Columns: `(n)` id, `(i)` image, `(m)` command, `(c)` created, `(s)` status, `(p)` ports, `(h)` health |
-| `--order` | `-o` | Sort by: `name`, `created`, `status` (default) |
+| `--order` | `-o` | Sort by: `name`, `created` (default: newest first) |
 | `--reverse` | `-r` | Reverse sort order |
 | `--json` | `-j` | Output as JSON |
 | `--version` | `-v` | Show version banner |
